@@ -7,20 +7,27 @@ import { TopPanelComponent } from './top-panel/top-panel.component';
 import {MatButtonModule} from "@angular/material/button";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BreakingChangesComponent } from './breaking-changes/breaking-changes.component';
+import {ApiService} from "./services/api.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
     AppComponent,
-    TopPanelComponent
+    TopPanelComponent,
+    BreakingChangesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatButtonModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     NgbModule
   ],
-  providers: [],
+  providers: [
+      ApiService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,18 @@
+<div>
+    <div class="d-flex justify-content-center">
+        <div class="spec-container me-5">
+            <h1 class="headers">Original Spec</h1>
+            <textarea #original class="text" rows="20"></textarea>
+        </div>
+        <div class="spec-container">
+            <h1 class="headers">Revised Spec</h1>
+            <textarea #revision class="text" rows="20" name="revision"></textarea>
+        </div>
+    </div>
+    <div class="button-container">
+        <button (click)="submitBreakingChanges(original.value, revision.value)" class="submitButton">
+            <span>Breaking Changes</span>
+        </button>
+    </div>
+
+</div>
