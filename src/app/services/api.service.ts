@@ -14,11 +14,7 @@ export class ApiService {
     const body = {
       "base": original,
       "revision": revision
-    }
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': this.basic });
-    
+    }    
     return this.http.post(`${this.endpoint}/breaking-changes`, body, {headers: {'Content-Type':  'application/x-www-form-urlencoded'}});
   }
 
