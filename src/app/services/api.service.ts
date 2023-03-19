@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {URLSearchParams} from '@angular/http';
+import {HttpClient, URLSearchParams} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
