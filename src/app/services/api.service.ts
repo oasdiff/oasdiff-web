@@ -15,7 +15,7 @@ export class ApiService {
       "base": original,
       "revision": revision
     }
-    return this.http.post(`${this.endpoint}/breaking-changes`, body);
+    return this.http.post(`${this.endpoint}/breaking-changes`, body, {'Content-Type':  'application/x-www-form-urlencoded'});
   }
 
 }
