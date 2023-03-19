@@ -5,6 +5,7 @@ import {BreakingChangesComponent} from "./breaking-changes/breaking-changes.comp
 const routes: Routes = [
   { path: '', redirectTo: '/breaking-changes', pathMatch: 'full' },
   { path: 'breaking-changes', component: BreakingChangesComponent },
+  {path: '**', redirectTo: '/breaking-changes', pathMatch: 'full'}
 ];
 
 @NgModule({
