@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, URLSearchParams} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +17,4 @@ export class ApiService {
     
     return this.http.post(`${this.endpoint}/breaking-changes`, body.toString(), {headers: {'Content-Type':  'application/x-www-form-urlencoded'}});
   }
-
 }
