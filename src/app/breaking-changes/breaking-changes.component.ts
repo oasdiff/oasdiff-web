@@ -12,11 +12,15 @@ export class BreakingChangesComponent {
   constructor(private api: ApiService) {
 
   }
-  async submitBreakingChanges(_original: any, _revision: any) {
+  submitBreakingChanges(_original: any, _revision: any) {
 
     if(_original.length > 100 && _revision.length > 100) {
+      this.api.sendBreakingChanges(_original, _revision).subscribe((data:any) => {
+        const t = data;
+      })
       try {
-        this.response = await lastValueFrom(this.api.sendBreakingChanges(_original, _revision));
+        // this.response = await lastValueFrom(this.api.sendBreakingChanges(_original, _revision));
+
       }
       catch (error) {
         console.log(error);
