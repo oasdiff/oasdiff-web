@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BreakingChangesComponent } from './breaking-changes/breaking-changes.component';
 import {ApiService} from "./services/api.service";
 import {HttpClientModule} from "@angular/common/http";
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {HttpClientModule} from "@angular/common/http";
     MatButtonModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    AgGridModule,
     NgbModule
   ],
   providers: [

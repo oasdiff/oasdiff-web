@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {ApiService} from "../services/api.service";
 import {lastValueFrom} from "rxjs";
+import { ColDef, GridReadyEvent } from 'ag-grid-community';
 
 @Component({
   selector: 'app-breaking-changes',
@@ -9,20 +10,26 @@ import {lastValueFrom} from "rxjs";
 })
 export class BreakingChangesComponent {
   response:any;
+  gridApi: any;
+  public columnDefs: ColDef[] = [
+    { field: 'id'},
+    { field: 'level', maxWidth: 100},
+    { field: 'operation', maxWidth: 120 },
+    { field: 'path'},
+    { field: 'source' },
+    { field: 'text' }
+  ];
+  public defaultColDef: ColDef = {
+    sortable: true,
+    filter: true,
+    resizable: true
+  };
   constructor(private api: ApiService) {
-
   }
   async submitBreakingChanges(_original: any, _revision: any) {
-
     if(_original.length > 100 && _revision.length > 100) {
-      // this.api.sendBreakingChanges(_original, _revision)
-      //     .subscribe((data:any) =>
-      //       {
-      //         const t = data;
-      //       })
       try {
         this.response = await lastValueFrom(this.api.sendBreakingChanges(_original, _revision));
-
       }
       catch (error) {
         console.log(error);
@@ -30,6 +37,9 @@ export class BreakingChangesComponent {
     } else {
         alert('Original Spec and Revised Spec must contain specs');
     }
-
+  }
+  onGridReady(params: GridReadyEvent) {
+    this.gridApi = params.api;
+    this.gridApi.sizeColumnsToFit()
   }
 }
