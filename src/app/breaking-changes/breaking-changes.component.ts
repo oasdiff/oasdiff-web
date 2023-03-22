@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {ApiService} from "../services/api.service";
 import {lastValueFrom} from "rxjs";
 import { ColDef, GridReadyEvent } from 'ag-grid-community';
@@ -10,6 +10,8 @@ import { ColDef, GridReadyEvent } from 'ag-grid-community';
 })
 export class BreakingChangesComponent {
   response:any;
+  originalSpec: any;
+  revisionSpec: any;
   gridApi: any;
   public columnDefs: ColDef[] = [
     { field: 'id'},
@@ -42,4 +44,31 @@ export class BreakingChangesComponent {
     this.gridApi = params.api;
     this.gridApi.sizeColumnsToFit()
   }
+
+  submitFile(response: any, spec: any) {
+    if (spec === 'original') {
+      this.originalSpec = response;
+    } else {
+      this.revisionSpec = response;
+    }
+  }
+  uploadFile = async (event: any, spec: string) => {
+    const file:File = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = async () => {
+        try {
+          await this.submitFile(
+            reader.result,
+            spec
+          );
+        } catch (err) {
+            console.log('Fail to read file stream')
+        }
+      };
+      reader.onerror = (error) => {
+        console.log('Failed to upload file')
+      };
+    reader.readAsText(file);
+    console.log('COMPLETED');
+  };
 }
